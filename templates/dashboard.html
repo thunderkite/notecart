@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Мои заметки — NoteCart{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <div class="dashboard-header">
+        <h1>Мои заметки</h1>
+        <button id="newNoteBtn" class="btn-primary">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4V16M4 10H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Новая заметка
+        </button>
+    </div>
+
+    <div class="search-bar">
+        <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M12.5 12.5L17 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input id="searchNotes" placeholder="Поиск по заметкам...">
+    </div>
+
+    <div id="notesList" class="notes-grid"></div>
+</div>
+
+<!-- Modal Editor -->
+<div id="noteEditorModal" class="modal hidden">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="editorTitle">Новая заметка</h2>
+            <button class="btn-close" id="closeModal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+        </div>
+        <form id="noteForm" class="note-form">
+            <input name="title" class="note-title" placeholder="Заголовок" required>
+            <textarea name="content" class="note-content" placeholder="Начните писать..." required></textarea>
+            <input name="tags" class="note-tags" placeholder="Теги через запятую">
+            <div class="form-actions">
+                <button type="button" id="cancelEdit" class="btn-secondary">Отмена</button>
+                <button type="submit" class="btn-primary">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}" defer></script>
+{% endblock %}

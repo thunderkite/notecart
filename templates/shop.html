@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Магазин — NoteCart{% endblock %}
+
+{% block content %}
+<section class="panel">
+    <h1>Магазин</h1>
+    <div class="shop-controls">
+        <input id="searchProducts" placeholder="Поиск товаров...">
+        <select id="categoryFilter"><option value="">Все категории</option></select>
+    </div>
+
+    <div id="productsGrid" class="products-grid"></div>
+
+    <aside class="cart-panel">
+        <h3>Корзина</h3>
+        <div id="cartItems"></div>
+        <div id="cartTotal"></div>
+        <div class="row">
+            <button id="checkoutBtn" class="btn">Оформить заказ</button>
+            <button id="clearCartBtn" class="btn btn--ghost">Очистить</button>
+        </div>
+    </aside>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/shop.js') }}" defer></script>
+{% endblock %}

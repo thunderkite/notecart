@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Админ — NoteCart{% endblock %}
+
+{% block content %}
+<section class="panel">
+    <h1>Админ-панель</h1>
+    <h2>Пользователи</h2>
+    <div id="adminUsers"></div>
+
+    <h2>Заказы</h2>
+    <div id="adminOrders"></div>
+
+    <h2>Отзывы</h2>
+    <div id="adminFeedback"></div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+async function loadAdmin(){
+    const users = await api.get('/admin/users');
+    document.getElementById('adminUsers').innerText = JSON.stringify(users.users || [], null, 2);
+    const orders = await api.get('/admin/orders');
+    document.getElementById('adminOrders').innerText = JSON.stringify(orders.orders || [], null, 2);
+    const fb = await api.get('/feedback');
+    document.getElementById('adminFeedback').innerText = JSON.stringify(fb.feedback || [], null, 2);
+}
+loadAdmin();
+</script>
+{% endblock %}
